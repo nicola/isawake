@@ -22,7 +22,7 @@
     var person_offset = people[person].offset;
     var remote = local.add(person_offset, 'm')
     var hours = +remote.format("H");
-    var answer = hours > 9 && hours < 24 ? "yes" : "no";
+    var answer = hours > 8 && hours < 24 ? "yes" : "no";
 
     document.getElementById("answer").innerHTML = answer + " is " + remote.format('HH:mm:ss');
   }
