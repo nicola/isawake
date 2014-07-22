@@ -1,33 +1,117 @@
 <html>
+
 <head>
-	<title>is awake?</title>
+    <title>is awake?</title>
 </head>
+<style>
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+}
+#answer {
+    margin: auto;
+    height: 40px;
+    width: 700px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 68px;
+    z-index: 2;
+}
+#sky {
+    width: 100%;
+    height: 900%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+    background-image: -webkit-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
+    background-image: -moz-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
+}
+</style>
+
 <body>
-  <div id="answer"></div>
-  <script src="http://momentjs.com/downloads/moment.js"></script>
-  <script type="text/javascript">
+    <div id="answer"></div>
+    <div id="sky"></div>
 
-  function isAwake() {
-    var people = {
-      nicola: {offset: -420},
-      virginia: {offset:60},
-      mattia: {offset:60},
-      lucia: {offset: -240}
-    };
-    var person = location.hostname.split(".")[0];
-    if (person == "isawake") return;
-    if (!people[person]) return;
+    <script src="http://momentjs.com/downloads/moment.js"></script>
+    <script type="text/javascript">
+    function skyPosition(pos) {
+        document.getElementById("sky").style.top = "-" + pos + "%";
+    }
 
-    var local = moment().zone(0);
-    var person_offset = people[person].offset;
-    var remote = local.add(person_offset, 'm')
-    var hours = +remote.format("H");
-    var answer = hours > 8 && hours < 24 ? "yes" : "no";
+    function isAwake() {
+        var people = {
+            nicola: {
+                offset: -420
+            },
+            virginia: {
+                offset: 60
+            },
+            mattia: {
+                offset: 60
+            },
+            lucia: {
+                offset: -240
+            }
+        };
+        var person = location.hostname.split(".")[0];
+        if (person == "isawake") return;
+        if (!people[person]) return;
 
-    document.getElementById("answer").innerHTML = answer + " is " + remote.format('HH:mm:ss');
-  }
-  isAwake();
+        var local = moment().zone(0),
+            person_offset = people[person].offset,
+            remote = local.add(person_offset, 'm'),
+            hours = +remote.format("H"),
+            answer = hours > 8 && hours < 24 ? "Yes" : "No";
 
-  </script>
+        document.getElementById("answer").innerHTML = answer + " it's " + remote.format('HH:mm');
+
+        if (hours >= 7 && hours < 8) {
+            skyPosition(220);
+        } else if (hours >= 8 && hours < 10) {
+            skyPosition(0);
+        } else if (hours >= 10 && hours < 13) {
+            skyPosition(0);
+        } else if (hours >= 13 && hours < 16) {
+            skyPosition(100);
+        } else if (hours >= 16 && hours < 18) {
+            skyPosition(150);
+        } else if (hours >= 18 && hours < 19) {
+            skyPosition(250);
+        } else if (hours >= 19 && hours < 20) {
+            skyPosition(300);
+        } else if (hours >= 20 && hours < 21) {
+            skyPosition(400);
+        } else if (hours >= 21 && hours < 22) {
+            skyPosition(450);
+        } else if (hours >= 22 && hours < 23) {
+            skyPosition(550);
+            document.getElementById("answer").style.color = "#ecf0f1";
+        } else if (hours >= 23 && hours <= 24) {
+            skyPosition(750);
+            document.getElementById("answer").style.color = "#ecf0f1";
+        } else if (hours >= 0 && hours < 5) {
+            skyPosition(800);
+            document.getElementById("answer").style.color = "#ecf0f1";
+        } else if (hours >= 5 && hours < 6) {
+            skyPosition(550);
+            document.getElementById("answer").style.color = "#ecf0f1";
+        } else if (hours >= 6 && hours < 7) {
+            skyPosition(450);
+            document.getElementById("answer").style.color = "#ecf0f1";
+        }
+    }
+    isAwake();
+    </script>
 </body>
+
 </html>
