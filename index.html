@@ -89,9 +89,9 @@ function isAwake() {
         ],
         person = location.hostname.split(".")[0],
         local = moment().zone(0)
-        
+
     fetchJSONFile(
-        "https://raw.githubusercontent.com/nicolagreco/isawake/master/people/+"person"+.json",
+        "https://raw.githubusercontent.com/nicolagreco/isawake/master/people/"+person+".json",
         function(obj) {
             if (!obj) {
                 return;
