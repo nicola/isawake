@@ -29,7 +29,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 1;
     overflow: hidden;
     background-image: -webkit-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
     background-image: -moz-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
@@ -51,35 +51,27 @@ body {
     <script type="text/javascript">
 /*jslint browser:true */
 /*global moment */
+
+function fetchJSONFile(path, success, failure) {
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState === 4) {
+            if (httpRequest.status === 200) {
+                var data = JSON.parse(httpRequest.responseText);
+                if (success) success(data);
+            } else
+            if (httpRequest.status === 404) {
+                if (failure) failure("Not found");
+            }
+        }
+    };
+    httpRequest.open('GET', path);
+    httpRequest.send(); 
+}
+
 function isAwake() {
     'use strict';
-    var people = {
-            'nicola': {
-                'offset': -420,
-                'range': [8, 24]
-            },
-            'mindy': {
-                'offset': 60,
-                'range': [7, 24]
-            },
-            'virginia': {
-                'offset': 60,
-                'range': [8, 24]
-            },
-            'mattia': {
-                'offset': 60,
-                'range': [8, 24]
-            },
-            'lucia': {
-                'offset': -240,
-                'range': [8, 24]
-            },
-            'framp': {
-                'offset': 60,
-                'range': [-1, 25]
-            }
-        },
-        positions = [
+    var positions = [
             800, 800, 800, 800,
             800, 550, 450, 220,
             0, 0, 0, 0,
@@ -96,22 +88,27 @@ function isAwake() {
             "#000000", "#000000", "#ecf0f1", "#ecf0f1"
         ],
         person = location.hostname.split(".")[0],
-        local = moment().zone(0),
-        personOffset = (people[person] || {}).offset,
-        personRange = (people[person] || {}).range,
-        remote = local.add(personOffset, 'm'),
-        hours = +remote.format("H"),
-        answer = hours > personRange[0] && hours < personRange[1] ? "Yes" : "No",
-        answerElement = document.getElementById("answer"),
-        skyElement = document.getElementById("sky");
+        local = moment().zone(0)
 
-    if (people[person] === undefined) {
-        return;
-    }
+    fetchJSONFile(
+        "http://"+person+".isawake.me/people/"+person+".json",
+        function(obj) {
+            if (!obj) {
+                return;
+            }
+            var personOffset = (obj || {}).offset,
+                personRange = (obj || {}).range,
+                remote = local.add(personOffset, 'm'),
+                hours = +remote.format("H"),
+                answer = hours > personRange[0] && hours < personRange[1] ? "Yes" : "No",
+                answerElement = document.getElementById("answer"),
+                skyElement = document.getElementById("sky");
 
-    answerElement.innerHTML = answer + " it's " + remote.format('HH:mm');
-    skyElement.style.top = "-" + positions[hours] + "%";
-    answerElement.style.color = colors[hours];
+            answerElement.innerHTML = answer + " it's " + remote.format('HH:mm');
+            skyElement.style.top = "-" + positions[hours] + "%";
+            answerElement.style.color = colors[hours];
+        })
+
 }
 isAwake();
     </script>
