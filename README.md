@@ -4,7 +4,7 @@ Changing timezones might be painful when you have to contact parents, friends, l
 ## Add yourself
 Get your `*name*.isawake.me` by adding yourself. At the moment is very geeky, but we will have [user interface](https://github.com/nicolagreco/isawake/issues/9) eventually.
 
-1. Create a new file [people/](https://github.com/nicolagreco/isawake/new/master/people) calling it yourname.json
+1.  [Create a new file](https://github.com/nicolagreco/isawake/new/master/people) in `people/` calling it yourname.json
 2. Add the following information:
 ```
 {
