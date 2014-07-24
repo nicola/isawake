@@ -92,6 +92,9 @@ function isAwake() {
         fetchJSONFile(
             "https://raw.githubusercontent.com/nicolagreco/isawake/master/people/+"person"+.json",
             function(obj) {
+                if (!obj) {
+                    return;
+                }
                 var personOffset = (obj || {}).offset,
                     personRange = (obj || {}).range,
                     remote = local.add(personOffset, 'm'),
@@ -99,10 +102,6 @@ function isAwake() {
                     answer = hours > personRange[0] && hours < personRange[1] ? "Yes" : "No",
                     answerElement = document.getElementById("answer"),
                     skyElement = document.getElementById("sky");
-
-                if (people[person] === undefined) {
-                    return;
-                }
 
                 answerElement.innerHTML = answer + " it's " + remote.format('HH:mm');
                 skyElement.style.top = "-" + positions[hours] + "%";
