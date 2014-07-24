@@ -1,48 +1,55 @@
 <html>
 <head>
-  <title>is awake?</title>
-  <style>
+    <title>is awake?</title>
+    <style>
 html,
 body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
 }
 #answer {
-  margin: auto;
-  height: 40px;
-  width: 700px;
-  text-align: center;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  font-size: 68px;
-  z-index: 2;
+    margin: auto;
+    height: 40px;
+    width: 280px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 34px;
+    z-index: 2;
 }
 #sky {
-  width: 100%;
-  height: 900%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  overflow: hidden;
-  background-image: -webkit-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
-  background-image: -moz-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
+    width: 100%;
+    height: 900%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+    background-image: -webkit-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
+    background-image: -moz-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
 }
-  </style>
+@media (min-width: 768px) {
+    #answer {
+        width: 700px;
+        font-size: 68px;
+    }
+}
+
+    </style>
 </head>
 
 <body>
-  <div id="answer"></div>
-  <div id="sky"></div>
+    <div id="answer"></div>
+    <div id="sky"></div>
 
-  <script src="http://momentjs.com/downloads/moment.js"></script>
-  <script type="text/javascript">
+    <script src="http://momentjs.com/downloads/moment.js"></script>
+    <script type="text/javascript">
 /*jslint browser:true */
 /*global moment */
 function isAwake() {
@@ -104,6 +111,6 @@ function isAwake() {
     answerElement.style.color = colors[hours];
 }
 isAwake();
-  </script>
+    </script>
 </body>
 </html>
