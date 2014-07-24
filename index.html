@@ -1,9 +1,7 @@
 <html>
-
 <head>
     <title>is awake?</title>
-</head>
-<style>
+    <style>
 html,
 body {
     width: 100%;
@@ -31,7 +29,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 1;
     overflow: hidden;
     background-image: -webkit-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
     background-image: -moz-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
@@ -42,7 +40,8 @@ body {
         font-size: 68px;
     }
 }
-</style>
+    </style>
+</head>
 
 <body>
     <div id="answer"></div>
@@ -50,74 +49,67 @@ body {
 
     <script src="http://momentjs.com/downloads/moment.js"></script>
     <script type="text/javascript">
-    function skyPosition(pos) {
-        document.getElementById("sky").style.top = "-" + pos + "%";
-    }
-
-    function isAwake() {
-        var people = {
-            nicola: {
-                offset: -420
+/*jslint browser:true */
+/*global moment */
+function isAwake() {
+    'use strict';
+    var people = {
+            'nicola': {
+                'offset': -420,
+                'range': [8, 24]
             },
-            virginia: {
-                offset: 60
+            'virginia': {
+                'offset': 60,
+                'range': [8, 24]
             },
-            mattia: {
-                offset: 60
+            'mattia': {
+                'offset': 60,
+                'range': [8, 24]
             },
-            lucia: {
-                offset: -240
+            'lucia': {
+                'offset': -240,
+                'range': [8, 24]
+            },
+            'framp': {
+                'offset': 60,
+                'range': [-1, 25]
             }
-        };
-        var person = location.hostname.split(".")[0];
-        if (person == "isawake") return;
-        if (!people[person]) return;
+        },
+        positions = [
+            800, 800, 800, 800,
+            800, 550, 450, 220,
+            0, 0, 0, 0,
+            0, 100, 100, 100,
+            150, 150, 250, 300,
+            400, 450, 550, 750
+        ],
+        colors = [
+            "#ecf0f1", "#ecf0f1", "#ecf0f1", "#ecf0f1",
+            "#ecf0f1", "#ecf0f1", "#ecf0f1", "#000000",
+            "#000000", "#000000", "#000000", "#000000",
+            "#000000", "#000000", "#000000", "#000000",
+            "#000000", "#000000", "#000000", "#000000",
+            "#000000", "#000000", "#ecf0f1", "#ecf0f1"
+        ],
+        person = location.hostname.split(".")[0],
+        local = moment().zone(0),
+        personOffset = (people[person] || {}).offset,
+        personRange = (people[person] || {}).range,
+        remote = local.add(personOffset, 'm'),
+        hours = +remote.format("H"),
+        answer = hours > personRange[0] && hours < personRange[1] ? "Yes" : "No",
+        answerElement = document.getElementById("answer"),
+        skyElement = document.getElementById("sky");
 
-        var local = moment().zone(0),
-            person_offset = people[person].offset,
-            remote = local.add(person_offset, 'm'),
-            hours = +remote.format("H"),
-            answer = hours > 8 && hours < 24 ? "Yes" : "No";
-
-        document.getElementById("answer").innerHTML = answer + " it's " + remote.format('HH:mm');
-
-        if (hours >= 7 && hours < 8) {
-            skyPosition(220);
-        } else if (hours >= 8 && hours < 10) {
-            skyPosition(0);
-        } else if (hours >= 10 && hours < 13) {
-            skyPosition(0);
-        } else if (hours >= 13 && hours < 16) {
-            skyPosition(100);
-        } else if (hours >= 16 && hours < 18) {
-            skyPosition(150);
-        } else if (hours >= 18 && hours < 19) {
-            skyPosition(250);
-        } else if (hours >= 19 && hours < 20) {
-            skyPosition(300);
-        } else if (hours >= 20 && hours < 21) {
-            skyPosition(400);
-        } else if (hours >= 21 && hours < 22) {
-            skyPosition(450);
-        } else if (hours >= 22 && hours < 23) {
-            skyPosition(550);
-            document.getElementById("answer").style.color = "#ecf0f1";
-        } else if (hours >= 23 && hours <= 24) {
-            skyPosition(750);
-            document.getElementById("answer").style.color = "#ecf0f1";
-        } else if (hours >= 0 && hours < 5) {
-            skyPosition(800);
-            document.getElementById("answer").style.color = "#ecf0f1";
-        } else if (hours >= 5 && hours < 6) {
-            skyPosition(550);
-            document.getElementById("answer").style.color = "#ecf0f1";
-        } else if (hours >= 6 && hours < 7) {
-            skyPosition(450);
-            document.getElementById("answer").style.color = "#ecf0f1";
-        }
+    if (people[person] === undefined) {
+        return;
     }
-    isAwake();
+
+    answerElement.innerHTML = answer + " it's " + remote.format('HH:mm');
+    skyElement.style.top = "-" + positions[hours] + "%";
+    answerElement.style.color = colors[hours];
+}
+isAwake();
     </script>
 </body>
-
 </html>
