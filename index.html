@@ -96,7 +96,7 @@ function isAwake() {
             if (!obj) {
                 return;
             }
-            var personOffset = (obj || {}).offset,
+            var personOffset = (obj || {}).offset*60,
                 personRange = (obj || {}).range,
                 remote = local.add(personOffset, 'm'),
                 hours = +remote.format("H"),

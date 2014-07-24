@@ -13,7 +13,7 @@ Get your `*name*.isawake.me` by adding yourself. At the moment is very geeky, bu
 }
 ```
 
-- `offset` is your timezone +hh in minutes
+- `offset` is your timezone hours
 - `range` is from what time until what time you are awake
 
 3. At the end of the page click on `Commit new file`
