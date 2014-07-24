@@ -1,6 +1,8 @@
 # isawake
 Changing timezones might be painful when you have to contact parents, friends, lovers and collegues.
 
+This is an example on how it would look like: http://nicola.isawake.me; colors, time and answer will change accordingly to the time.
+
 ## Add yourself
 Get your `*name*.isawake.me` by adding yourself. At the moment is very geeky, but we will have [user interface](https://github.com/nicolagreco/isawake/issues/9) eventually.
 
