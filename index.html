@@ -91,7 +91,7 @@ function isAwake() {
         local = moment().zone(0)
 
     fetchJSONFile(
-        "https://raw.githubusercontent.com/nicolagreco/isawake/master/people/"+person+".json",
+        "http://"+person+".isawake.me/people/"+person+".json",
         function(obj) {
             if (!obj) {
                 return;
