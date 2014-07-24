@@ -88,25 +88,26 @@ function isAwake() {
             "#000000", "#000000", "#ecf0f1", "#ecf0f1"
         ],
         person = location.hostname.split(".")[0],
-        local = moment().zone(0),
-        fetchJSONFile(
-            "https://raw.githubusercontent.com/nicolagreco/isawake/master/people/+"person"+.json",
-            function(obj) {
-                if (!obj) {
-                    return;
-                }
-                var personOffset = (obj || {}).offset,
-                    personRange = (obj || {}).range,
-                    remote = local.add(personOffset, 'm'),
-                    hours = +remote.format("H"),
-                    answer = hours > personRange[0] && hours < personRange[1] ? "Yes" : "No",
-                    answerElement = document.getElementById("answer"),
-                    skyElement = document.getElementById("sky");
+        local = moment().zone(0)
+        
+    fetchJSONFile(
+        "https://raw.githubusercontent.com/nicolagreco/isawake/master/people/+"person"+.json",
+        function(obj) {
+            if (!obj) {
+                return;
+            }
+            var personOffset = (obj || {}).offset,
+                personRange = (obj || {}).range,
+                remote = local.add(personOffset, 'm'),
+                hours = +remote.format("H"),
+                answer = hours > personRange[0] && hours < personRange[1] ? "Yes" : "No",
+                answerElement = document.getElementById("answer"),
+                skyElement = document.getElementById("sky");
 
-                answerElement.innerHTML = answer + " it's " + remote.format('HH:mm');
-                skyElement.style.top = "-" + positions[hours] + "%";
-                answerElement.style.color = colors[hours];
-            })
+            answerElement.innerHTML = answer + " it's " + remote.format('HH:mm');
+            skyElement.style.top = "-" + positions[hours] + "%";
+            answerElement.style.color = colors[hours];
+        })
 
 }
 isAwake();
