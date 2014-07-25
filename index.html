@@ -34,6 +34,9 @@ body {
     background-image: -webkit-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
     background-image: -moz-linear-gradient(top, rgba(30, 152, 209, 1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%, rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%, rgba(197, 127, 81, 0.82) 55%, rgba(5, 5, 5, 1) 66%, rgb(54, 55, 56) 77%, rgb(3, 3, 3) 100%);
 }
+.add_yourself {
+    color: #fff;
+}
 @media (min-width: 768px) {
     #answer {
         width: 700px;
@@ -89,6 +92,11 @@ function isAwake() {
         ],
         person = location.hostname.split(".")[0],
         local = moment().zone(0)
+
+    if (!person) {
+        document.getElementById("answer").innerHTML = "<a class='add_yourself' href='https://github.com/nicolagreco/isawake#add-yourself'>Add yourself</a>"
+        return
+    }
 
     fetchJSONFile(
         "http://"+person+".isawake.me/people/"+person+".json",
