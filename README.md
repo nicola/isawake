@@ -1,6 +1,8 @@
 # isawake
 Changing timezones might be painful when you have to contact parents, friends, lovers and collegues.
 
+This is an example on how it would look like: http://nicola.isawake.me; colors, time and answer will change accordingly to the time.
+
 ## Add yourself
 Get your `*name*.isawake.me` by adding yourself. At the moment is very geeky, but we will have [user interface](https://github.com/nicolagreco/isawake/issues/9) eventually.
 
@@ -8,12 +10,12 @@ Get your `*name*.isawake.me` by adding yourself. At the moment is very geeky, bu
 2. Add the following information:
 ```
 {
-  'offset': -420,
+  'offset': -7,
   'range': [8, 24]
 }
 ```
 
-- `offset` is your timezone +hh in minutes
+- `offset` is your timezone hours
 - `range` is from what time until what time you are awake
 
 3. At the end of the page click on `Commit new file`
