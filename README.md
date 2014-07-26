@@ -10,8 +10,8 @@ Get your `*name*.isawake.me` by adding yourself. At the moment is very geeky, bu
 2. Add the following information:
 ```
 {
-  'offset': -7,
-  'range': [8, 24]
+  "offset": -7,
+  "range": [8, 24]
 }
 ```
 
