@@ -69,7 +69,15 @@ function fetchJSONFile(path, success, failure) {
         }
     };
     httpRequest.open('GET', path);
-    httpRequest.send(); 
+    httpRequest.send();
+}
+
+function isInTimeInterval(time, from, to) {
+    if (from < to) {
+       return from <= time && time < to;
+    } else { // means it is awake past midnight
+        return (from <= time && time < 24) || (0 <= time && time < to);
+    }
 }
 
 function isAwake() {
@@ -108,7 +116,7 @@ function isAwake() {
                 personRange = (obj || {}).range,
                 remote = local.add(personOffset, 'm'),
                 hours = +remote.format("H"),
-                answer = hours > personRange[0] && hours < personRange[1] ? "Yes" : "No",
+                answer = isInTimeInterval(hours, personRange[0], personRange[1]) ? "Yes" : "No",
                 answerElement = document.getElementById("answer"),
                 skyElement = document.getElementById("sky");
 
