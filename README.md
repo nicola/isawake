@@ -2,7 +2,7 @@
 
 ##### The (eventually) biggest crowdsourced database of when people are awake. Star the project to be updated!
 
-Changing timezones might be painful when you have to contact parents, friends, lovers and collegues.
+Just give a link to your parents, friends, lovers and collegues.
 
 Example: [http://nicola.isawake.me](http://nicola.isawake.me)
 Colors, time and answer will change accordingly to the time.
@@ -24,10 +24,9 @@ Get your `*name*.isawake.me` by adding yourself. At the moment is very geeky, bu
 
 3. At the end of the page click on `Commit new file`
 
-
 ## Contributors
- - @nicolagreco
- - @mtt87
+ - [http://nicola.isawake.me](http://nicola.isawake.me)
+ - [http://mattia.isawake.me](http://mattia.isawake.me)
  - @framp
  - @pcalessio
  - @mindyday
