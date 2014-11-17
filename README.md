@@ -24,6 +24,10 @@ Get your `*name*.isawake.me` by adding yourself. At the moment is very geeky, bu
 
 3. At the end of the page click on `Commit new file`
 
+## Why this?
+
+When I was at Mozilla (an amazing world-wide distributed company) I wanted to know if the other collegues were awake (so, thanks [@sole](http://github.com/sole), [@jryans](http://github.com/jryans), [@potch](http://github.com/potch))
+
 ## Contributors
  - [http://nicola.isawake.me](http://nicola.isawake.me)
  - [http://mattia.isawake.me](http://mattia.isawake.me)
