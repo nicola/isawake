@@ -2,10 +2,9 @@
 
 ##### The (eventually) biggest crowdsourced database of when people are awake. Star the project to be updated!
 
-Just give a link to your parents, friends, lovers and collegues.
+Give your link to update your parents, friends, lovers and collegues about your timezone and sleeping time
 
 Example: [http://nicola.isawake.me](http://nicola.isawake.me)
-Colors, time and answer will change accordingly to the time.
 
 ## Add yourself
 Get your `*name*.isawake.me` by adding yourself. At the moment is very geeky, but we will have [user interface](https://github.com/nicolagreco/isawake/issues/9) eventually.
